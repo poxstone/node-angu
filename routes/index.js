@@ -10,4 +10,8 @@ router.get('/maps', function(req, res, next) {
   res.render('maps', { title: 'Map list' });
 });
 
+router.get('/', function(req, res, next) {
+  res.render('index', { title: 'Home' });
+});
+
 module.exports = router;
