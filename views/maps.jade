@@ -1,0 +1,49 @@
+extends layout
+block header
+  -//script(src='https://rawgit.com/buberdds/angular-bootstrap-colorpicker/master/js/bootstrap-colorpicker-module.js')
+  script(src='/js/maps.js')
+block content
+  main(ng-app='app'): div(ng-controller='ConttlCrud as crud')
+    small.errors {{crud.errores}}
+    hr
+    |{{crud.maps}}
+    hr
+    h2  Actual1
+    ul
+      li(ng-repeat="map in crud.maps")
+        b: small {{map}}: 
+        |{{map.name}} - {{map.type}}, {{map.primary}}
+    hr
+    h2 POST-Insert
+    label name:
+      input(type='text',ng-model='crud.toSave.name')
+    label userId:
+      input(type='text',ng-model='crud.toSave.userId')  
+    label type:
+      input(type='text',ng-model='crud.toSave.type')  
+    label primary
+      input(type="checkbox",ng-model='crud.toSave.primary')
+    button(ng-click="crud.saveMap()") save
+    
+    hr
+    h2 Update
+    label selec to update
+      select(ng-options="map as map.name for map in crud.maps",ng-model="crud.toUpdate.map",ng-change="crud.selectUpdate()")
+    abel userId:
+      input(type='text',ng-model='crud.toUpdate.userId') 
+    label name
+      input(type='text',ng-model='crud.toUpdate.name')  
+    label type
+      input(type='text',ng-model='crud.toUpdate.type')  
+    label primary
+      input(type='checkbox',ng-model='crud.toUpdate.primary')  
+    button(ng-click="crud.updateMap()") update
+    
+    
+    hr
+    h2 Delete
+    label Delete:
+      select(ng-options="map as map.name for map in crud.maps",ng-model="crud.toDelete")
+    button(ng-click="crud.deleteMaps()") Delete
+  
+    

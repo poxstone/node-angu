@@ -1,0 +1,31 @@
+{
+  "name": "angu",
+  "homepage": "https://github.com/poxstone/angu",
+  "authors": [
+    "poxstone <poxstone@gmail.com>"
+  ],
+  "description": "local extnsions",
+  "main": "bin/www",
+  "moduleType": [
+    "amd"
+  ],
+  "keywords": [
+    "dependencias"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "angular-animate": "~1.4.8",
+    "angular": "~1.4.8",
+    "bootstrap": "~3.3.6",
+    "font-awesome": "~4.5.0"
+  }
+}
