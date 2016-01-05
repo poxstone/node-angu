@@ -25,6 +25,10 @@ router.get('/signup', function(req, res) {
 router.get('/facebook', passportController.facebookAuth)
   .get('/facebook/callback', passportController.facebookCallback);
 
+//twitter
+router.get('/twitter', passportController.twitterAuth)
+  .get('/twitter/callback', passportController.twitterCallback);
+
 //profile
 router.get('/profile', passportController.isLoggedIn, function(req, res) {
   res.render('auth/profile', {
