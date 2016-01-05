@@ -49,3 +49,17 @@ block content
               | #{user.twitter.username}<br>
             strong displayName:
               | #{user.twitter.displayName}
+      .col-sm-6
+        .well
+          h3.text-danger
+            span.fa.fa-twitter
+            |  twitter
+          p
+            strong id:
+              | #{user.google.id}<br>
+            strong token:
+              | #{user.google.token}<br>
+            strong email:
+              | #{user.google.email}<br>
+            strong name:
+              | #{user.google.name}
