@@ -11,15 +11,15 @@ block content
       form(action='/auth/signup', method='post')
         .form-group
           label Email
-          input.form-control(type='text', name='email')
+          input.form-control(type='email', name='email')
         .form-group
           label Password
           input.form-control(type='password', name='password')
         button.btn.btn-warning.btn-lg(type='submit') Signup
       hr
       p
-        | Need an account? 
-        a(href='/auth/login') Signup
+        | or authentique? 
+        a(href='/auth/login') Login
       p
         | Or go 
         a(href='/auth/') home

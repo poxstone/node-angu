@@ -68,7 +68,7 @@ router.get('/profile', isLoggedIn, function(req, res) {
 // AUTHORIZE (ALREADY LOGGED IN / CONNECTING OTHER SOCIAL ACCOUNT) =============
 // locally --------------------------------
 router.get('/connect/local', function(req, res) {
-  res.render('auth/connect-local', { message: req.flash('loginMessage') });
+  res.render('auth/connect-local', { message: req.flash('signupMessage') });
 });
 router.post('/connect/local', passport.authenticate('local-signup', {
   successRedirect : '/auth/profile', // redirect to the secure profile section

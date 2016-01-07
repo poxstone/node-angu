@@ -105,7 +105,7 @@ module.exports = function(passport){
       passReqToCallback : true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
     },
     // facebook will send back the token and profile
-    function(token, refreshToken, profile, done) {
+    function(req, token, refreshToken, profile, done) {
       // asynchronous
       process.nextTick(function() {
 
@@ -126,7 +126,7 @@ module.exports = function(passport){
               if (!user.facebook.token) {
                 user.facebook.token = token;
                 user.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName;
-                user.facebook.email = (profile.emails)? profile.emails[0].value : 'none@facebook.com'; // facebook can return multiple emails
+                user.facebook.email = (profile.emails)? profile.emails[0].value : 'pox255@gmail'; // facebook can return multiple emails
 
                 user.save(function(err) {
                   if (err)
@@ -146,7 +146,7 @@ module.exports = function(passport){
               newUser.facebook.id    = profile.id; // set the users facebook id                   
               newUser.facebook.token = token; // we will save the token that facebook provides to the user                    
               newUser.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName; // look at the passport user profile to see how names are returned
-              newUser.facebook.email = (profile.emails)? profile.emails[0].value : 'none@facebook.com'; // facebook can return multiple emails so we'll take the first
+              newUser.facebook.email = (profile.emails)? profile.emails[0].value : 'pox255@gmail'; // facebook can return multiple emails so we'll take the first
 
               // save our user to the database
               newUser.save(function(err) {
@@ -168,7 +168,7 @@ module.exports = function(passport){
           user.facebook.id    = profile.id;
           user.facebook.token = token;
           user.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName;
-          user.facebook.email = profile.emails[0].value;
+          user.facebook.email = (profile.emails)? profile.emails[0].value : 'pox255@gmail'; // facebook can return multiple emails so we'll take the first
 
           // save the user
           user.save(function(err) {
@@ -191,7 +191,7 @@ module.exports = function(passport){
       callbackURL     : configAuth.twitterAuth.callbackURL,
       passReqToCallback : true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
     },
-    function(token, tokenSecret, profile, done) {
+    function(req, token, tokenSecret, profile, done) {
 
       // make the code asynchronous
       // User.findOne won't fire until we have all our data back from Twitter
@@ -277,7 +277,7 @@ module.exports = function(passport){
       passReqToCallback : true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
 
   },
-  function(token, refreshToken, profile, done) {
+  function(req, token, refreshToken, profile, done) {
 
     // make the code asynchronous
     // User.findOne won't fire until we have all our data back from Google
