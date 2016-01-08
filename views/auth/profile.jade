@@ -15,51 +15,68 @@ block content
             span.fa.fa-user
             |  Local
           p
-            strong id:
-              | #{user._id}<br>
-            strong email:
-              | #{user.local.email}<br>
-            strong password:
-              | #{user.local.password}
+            if (user.local.email)
+              strong id:
+                | #{user._id}<br>
+              strong email:
+                | #{user.local.email}<br>
+              strong password:
+                | #{user.local.password}<br>
+              a.btn.btn-default(href="/auth/unlink/local") Unlink
+            else
+              a.btn.btn-default(href="/auth/connect/local") Connect Local
+
       .col-sm-6
         .well
           h3.text-primary
             span.fa.fa-facebook
             |  Facebook
           p
-            strong id:
-              | #{user.facebook.id}<br>
-            strong token:
-              | #{user.facebook.token}<br>
-            strong email:
-              | #{user.facebook.email}<br>
-            strong name:
-              | #{user.facebook.name}
+            if (user.facebook.token)
+              strong id:
+                | #{user.facebook.id}<br>
+              strong token:
+                | #{user.facebook.token}<br>
+              strong email:
+                | #{user.facebook.email}<br>
+              strong name:
+                | #{user.facebook.name}<br>
+              a.btn.btn-primary(href="/auth/unlink/facebook") Unlink
+            else
+              a.btn.btn-primary(href="/auth/connect/facebook") Connect facebook
       .col-sm-6
         .well
           h3.text-info
             span.fa.fa-twitter
             |  twitter
           p
-            strong id:
-              | #{user.twitter.id}<br>
-            strong token:
-              | #{user.twitter.token}<br>
-            strong username:
-              | #{user.twitter.username}<br>
-            strong displayName:
-              | #{user.twitter.displayName}
+            if (user.twitter.token)
+              strong id:
+                | #{user.twitter.id}<br>
+              strong token:
+                | #{user.twitter.token}<br>
+              strong username:
+                | #{user.twitter.username}<br>
+              strong displayName:
+                | #{user.twitter.displayName}<br>
+              a.btn.btn-info(href="/auth/unlink/twitter") Unlink
+            else
+              a.btn.btn-info(href="/auth/connect/twitter") Connect twitter
       .col-sm-6
         .well
           h3.text-danger
             span.fa.fa-google-plus
             |  Google
           p
-            strong id:
-              | #{user.google.id}<br>
-            strong token:
-              | #{user.google.token}<br>
-            strong email:
-              | #{user.google.email}<br>
-            strong name:
-              | #{user.google.name}
+            if (user.google.token)
+              strong id:
+                | #{user.google.id}<br>
+              strong token:
+                | #{user.google.token}<br>
+              strong email:
+                | #{user.google.email}<br>
+              strong name:
+                | #{user.google.name}<br>
+              a.btn.btn-danger(href="/auth/unlink/google") Unlink
+            else
+              a.btn.btn-danger(href="/auth/connect/google") Connect google
