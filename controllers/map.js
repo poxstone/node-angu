@@ -28,6 +28,7 @@ exports.postMaps = function(req, res){
 
 //get maps
 exports.getMaps = function(req, res){
+	console.log('req.body.user:======= ', req.body.user);
 	
   Map.find(function(err, maps) {
     if (err)
@@ -39,7 +40,6 @@ exports.getMaps = function(req, res){
 
 //expecific map by user
 exports.getMapuser = function(req, res){
-	console.log('busqueda: ', req.params.user_id);
 	Map.find({ userId: req.params.user_id }, function(err, map){
 
 		if(err){

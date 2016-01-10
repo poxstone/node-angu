@@ -8,6 +8,7 @@ function ConttlCrud($http){
 	var vm = this;//$scope
 	vm.pr='gato';
 	vm.errores= [{name:'no hay'}];
+	vm.userId;//user ínfo
 	
 	//models empty
 	vm.modelSave= {
@@ -35,10 +36,10 @@ function ConttlCrud($http){
 	//initialized
 	function init(){
 	    //call it here
+		getUser( getMaps );
 		vm.toSave = angular.copy(vm.modelSave);
 		vm.toDelete = angular.copy(vm.modelDelete);
 		vm.toUpdate = angular.copy(vm.modelUpdate);
-		getMaps();
 	};
 	
 	//select edit object
@@ -51,15 +52,35 @@ function ConttlCrud($http){
 
 	};
 	
+	function getUser(callback){
+		var req = {
+			 method: 'get',
+			 url: '/api/user',
+			 headers: {
+			   'Content-Type': 'application/json; charset=utf-8'
+			 }
+		};
+		
+		$http(req).then(
+
+			function(res){
+				vm.userId = res.data.user._id;
+				callback();//getMaps
+			},
+			function(res){
+				vm.errores= ['error getUser: ',res];
+			}
+		);
+	};
+
 	//methods
 	function getMaps(){
 		var req = {
 			 method: 'get',
-			 url: '/api/maps',
+			 url: '/api/mapsuser/' +  vm.userId ,
 			 headers: {
 			   'Content-Type': 'application/json; charset=utf-8'
-			 },
-			 data: { test: 'test' }
+			 }
 		};
 		
 		$http(req).then(
@@ -69,12 +90,14 @@ function ConttlCrud($http){
 				//vm.errores= ['status getMaps: ',res];
 			},
 			function(res){
-				vm.errores= ['erro getMaps: ',res];
+				vm.errores= ['error getMaps: ',res];
 			}
 		);
 	};
 		
 	vm.saveMap = function(){
+		vm.toSave.userId = vm.userId;
+		console.log(vm.userId);
 		var req = {
 			 method: 'post',
 			 url: '/api/maps',
@@ -94,13 +117,12 @@ function ConttlCrud($http){
 				
 			},
 			function(res){
-				vm.errores= ['erro save: ',res];
+				vm.errores= ['error save: ',res];
 			}
 		);
 	};
 	
 	vm.deleteMaps = function(){
-		console.log(vm.toDelete._id);
 		var req = {
 			 method: 'delete',
 			 url: '/api/maps/'+vm.toDelete._id,
@@ -119,14 +141,13 @@ function ConttlCrud($http){
 				vm.errores= ['status deleteMaps: ',res];
 			},
 			function(res){
-				vm.errores= ['erro delete: ',res];
+				vm.errores= ['error delete: ',res];
 			}
 		);
 		
 	};
 	
 	vm.updateMap = function(){
-		console.log(vm.toUpdate);
 		var req = {
 			 method: 'put',
 			 url: '/api/maps/'+vm.toUpdate.map._id,
@@ -146,7 +167,7 @@ function ConttlCrud($http){
 				
 			},
 			function(res){
-				vm.errores= ['erro updater: ',res];
+				vm.errores= ['error updater: ',res];
 			}
 		);
 		

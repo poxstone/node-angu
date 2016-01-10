@@ -14,11 +14,9 @@ block content
         b: small {{map}}: 
         |{{map.name}} - {{map.type}}, {{map.primary}}
     hr
-    h2 POST-Insert
+    h2 POST-save
     label name:
       input(type='text',ng-model='crud.toSave.name')
-    label userId:
-      input(type='text',ng-model='crud.toSave.userId')  
     label type:
       input(type='text',ng-model='crud.toSave.type')  
     label primary
